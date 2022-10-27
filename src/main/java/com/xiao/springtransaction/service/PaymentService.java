@@ -1,6 +1,7 @@
 package com.xiao.springtransaction.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.xiao.springtransaction.entity.Consumer;
 import com.xiao.springtransaction.entity.Payment;
 
 import java.math.BigDecimal;
@@ -28,8 +29,12 @@ public interface PaymentService extends IService<Payment> {
      * @param payment
      * @return
      */
-    int update(Payment payment, BigDecimal money);
+    int updateRequired(Payment payment, BigDecimal money);
 
+
+    int updateRequiresNew(Payment payment, BigDecimal money);
+
+    int  updateNesetd(Payment payment, BigDecimal money);
     /**
      * 添加数据
      *

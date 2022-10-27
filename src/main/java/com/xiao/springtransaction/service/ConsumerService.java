@@ -3,6 +3,8 @@ package com.xiao.springtransaction.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xiao.springtransaction.entity.Consumer;
 import com.xiao.springtransaction.entity.Consumer;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author aloneMan
@@ -27,7 +29,17 @@ public interface ConsumerService extends IService<Consumer> {
      * @param consumer
      * @return
      */
-    int update(Consumer consumer);
+    @Transactional(rollbackFor = Exception.class)
+    int updateRequired(Consumer consumer);
+
+    /**
+     * 事务隔离级别：REQUIRES_NEW
+     *
+     * @param consumer
+     * @return
+     */
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    int updateRequiresNew(Consumer consumer);
 
     /**
      * 添加数据

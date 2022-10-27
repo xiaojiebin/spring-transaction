@@ -19,7 +19,6 @@ import java.math.BigDecimal;
  */
 
 @RestController
-@RequestMapping("/api/v1")
 @Slf4j
 public class PaymentController {
 
@@ -29,8 +28,13 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    @GetMapping("/payment")
-    public Integer payment(Payment payment, BigDecimal money) {
-        return paymentService.update(payment, money);
+    @GetMapping("/requires")
+    public Integer updateRequires(Payment payment, BigDecimal money) {
+        return paymentService.updateRequired(payment, money);
+    }
+
+    @GetMapping("/requiresNew")
+    public Integer updateRequiresNew(Payment payment, BigDecimal money) {
+        return paymentService.updateRequiresNew(payment, money);
     }
 }
